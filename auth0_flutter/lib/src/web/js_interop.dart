@@ -3,7 +3,7 @@
 @JS('auth0')
 library auth0;
 
-import 'package:js_interop/js_interop.dart';
+import 'dart:js_interop';
 
 @JS()
 @anonymous
@@ -23,21 +23,22 @@ class AuthorizationParams {
   external String? get organization;
   external String? get scope;
 
-  external factory AuthorizationParams(
-      {final String? audience,
-      final String? redirect_uri,
-      final String? acr_values,
-      final String? display,
-      final String? login_hint,
-      final String? prompt,
-      final String? screen_hint,
-      final String? id_token_hint,
-      final int? max_age,
-      final String? ui_locales,
-      final String? connection,
-      final String? invitation,
-      final String? organization,
-      final String? scope});
+  external factory AuthorizationParams({
+    String? audience,
+    String? redirect_uri,
+    String? acr_values,
+    String? display,
+    String? login_hint,
+    String? prompt,
+    String? screen_hint,
+    String? id_token_hint,
+    int? max_age,
+    String? ui_locales,
+    String? connection,
+    String? invitation,
+    String? organization,
+    String? scope
+  });
 }
 
 @JS()
@@ -46,62 +47,68 @@ class RedirectLoginOptions {
   external AuthorizationParams? get authorizationParams;
   external String? get fragment;
 
-  external factory RedirectLoginOptions(
-      {final AuthorizationParams authorizationParams, final String fragment});
+  external factory RedirectLoginOptions({
+    AuthorizationParams? authorizationParams,
+    String? fragment
+  });
 }
 
 @JS()
 @anonymous
 abstract class Cache {
-  T get<T>(final String key);
-  void remove(final String key);
-  void set<T>(final String key, final T entry);
-  Future<List<String>> allKeys();
+  external T get<T>(String key);
+  external void remove(String key);
+  external void set<T>(String key, T entry);
+  external Future<List<String>> allKeys();
 }
 
 @JS()
 @anonymous
 class Auth0ClientInfo {
-  external Map<String, String>? get env;
+  external JSObject? get env;
   external String get name;
   external String get version;
 
-  external factory Auth0ClientInfo(
-      {final Map<String, String> env,
-      required final String name,
-      required final String version});
+  external factory Auth0ClientInfo({
+    JSObject? env,
+    required String name,
+    required String version
+  });
 }
 
 @JS()
 @anonymous
 class Auth0ClientOptions {
-  external factory Auth0ClientOptions(
-      {required final Auth0ClientInfo clientInfo,
-      required final String domain,
-      required final String clientId,
-      final int? authorizeTimeoutInSeconds,
-      final String? cacheLocation,
-      final String? cookieDomain,
-      final int? httpTimeoutInSeconds,
-      final String? issuer,
-      final int? leeway,
-      final bool? legacySameSiteCookie,
-      final int? sessionCheckExpiryDays,
-      final bool? useCookiesForTransactions,
-      final bool? useFormData,
-      final bool? useRefreshTokens,
-      final bool? useRefreshTokensFallback,
-      final AuthorizationParams? authorizationParams});
+  external factory Auth0ClientOptions({
+    required Auth0ClientInfo clientInfo,
+    required String domain,
+    required String clientId,
+    int? authorizeTimeoutInSeconds,
+    String? cacheLocation,
+    String? cookieDomain,
+    int? httpTimeoutInSeconds,
+    String? issuer,
+    int? leeway,
+    bool? legacySameSiteCookie,
+    int? sessionCheckExpiryDays,
+    bool? useCookiesForTransactions,
+    bool? useFormData,
+    bool? useRefreshTokens,
+    bool? useRefreshTokensFallback,
+    AuthorizationParams? authorizationParams
+  });
 }
 
 @JS()
 @anonymous
 class GetTokenSilentlyAuthParams {
-  external String? scope;
-  external String? audience;
+  external String? get scope;
+  external String? get audience;
 
-  external factory GetTokenSilentlyAuthParams(
-      {final String? audience, final String? scope});
+  external factory GetTokenSilentlyAuthParams({
+    String? audience,
+    String? scope
+  });
 }
 
 @JS()
@@ -110,13 +117,14 @@ class GetTokenSilentlyOptions {
   external GetTokenSilentlyAuthParams? get authorizationParams;
   external String? get cacheMode;
   external num? get timeoutInSeconds;
-  external bool detailedResponse;
+  external bool? get detailedResponse;
 
-  external factory GetTokenSilentlyOptions(
-      {final GetTokenSilentlyAuthParams? authorizationParams,
-      final String? cacheMode,
-      final num? timeoutInSeconds,
-      final bool? detailedResponse});
+  external factory GetTokenSilentlyOptions({
+    GetTokenSilentlyAuthParams? authorizationParams,
+    String? cacheMode,
+    num? timeoutInSeconds,
+    bool? detailedResponse
+  });
 }
 
 @JS()
@@ -124,16 +132,17 @@ class GetTokenSilentlyOptions {
 class WebCredentials {
   external String get access_token;
   external String get id_token;
-  external num expires_in;
+  external num get expires_in;
   external String? get refresh_token;
   external String? get scope;
 
-  external factory WebCredentials(
-      {final String access_token,
-      final String id_token,
-      final num expires_in,
-      final String? refresh_token,
-      final String? scope});
+  external factory WebCredentials({
+    required String access_token,
+    required String id_token,
+    required num expires_in,
+    String? refresh_token,
+    String? scope
+  });
 }
 
 @JS()
@@ -142,8 +151,10 @@ class LogoutParams {
   external String? get returnTo;
   external bool? get federated;
 
-  external factory LogoutParams(
-      {final String? returnTo, final bool? federated});
+  external factory LogoutParams({
+    String? returnTo,
+    bool? federated
+  });
 }
 
 @JS()
@@ -151,7 +162,7 @@ class LogoutParams {
 class LogoutOptions {
   external LogoutParams? get logoutParams;
 
-  external factory LogoutOptions({final LogoutParams? logoutParams});
+  external factory LogoutOptions({LogoutParams? logoutParams});
 }
 
 @JS()
@@ -159,30 +170,29 @@ class LogoutOptions {
 class PopupLoginOptions {
   external AuthorizationParams? get authorizationParams;
 
-  external factory PopupLoginOptions(
-      {final AuthorizationParams authorizationParams});
+  external factory PopupLoginOptions({AuthorizationParams? authorizationParams});
 }
 
 @JS()
 @anonymous
 class PopupConfigOptions {
-  external dynamic get popup;
+  external JSObject? get popup;
   external int? get timeoutInSeconds;
 
-  external factory PopupConfigOptions(
-      {final dynamic popup, final int? timeoutInSeconds});
+  external factory PopupConfigOptions({
+    JSObject? popup,
+    int? timeoutInSeconds
+  });
 }
 
 @JS()
 class Auth0Client {
-  external Auth0Client(final Auth0ClientOptions options);
-  external Future<void> loginWithRedirect([final RedirectLoginOptions options]);
-  external Future<void> loginWithPopup(
-      [final PopupLoginOptions? options, final PopupConfigOptions? config]);
-  external Future<void> handleRedirectCallback([final String? url]);
+  external factory Auth0Client(Auth0ClientOptions options);
+  external Future<void> loginWithRedirect([RedirectLoginOptions? options]);
+  external Future<void> loginWithPopup([PopupLoginOptions? options, PopupConfigOptions? config]);
+  external Future<void> handleRedirectCallback([String? url]);
   external Future<void> checkSession();
-  external Future<WebCredentials> getTokenSilently(
-      [final GetTokenSilentlyOptions? options]);
+  external Future<WebCredentials> getTokenSilently([GetTokenSilentlyOptions? options]);
   external Future<bool> isAuthenticated();
-  external Future<void> logout([final LogoutOptions? logoutParams]);
+  external Future<void> logout([LogoutOptions? logoutParams]);
 }
