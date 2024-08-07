@@ -3,7 +3,7 @@
 @JS('auth0')
 library auth0;
 
-import 'package:js/js.dart';
+import 'package:js_interop/js_interop.dart';
 
 @JS()
 @anonymous
